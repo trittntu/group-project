@@ -3,12 +3,18 @@
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccountController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Root route - redirect based on auth status
 Route::get('/', function () {
     if (auth()->check()) {
-        return redirect()->route('dashboard');
+        if (auth()->user()->hasVerifiedEmail()) {
+            return redirect()->route('dashboard');
+        } else {
+            return redirect()->route('verification.notice');
+        }
     }
     return app(LandingController::class)->index();
 });
@@ -33,8 +39,34 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->name('logout');
 
-// Protected routes
+// Email Verification Routes
 Route::middleware('auth')->group(function () {
+    // Email verification notice
+    Route::get('/email/verify', function (Request $request) {
+        // Auto send verification email when page loads
+        if ($request->user()->hasVerifiedEmail()) {
+            return redirect()->route('dashboard');
+        }
+        
+        $request->user()->sendEmailVerificationNotification();
+        return view('auth.verify-email')->with('message', 'Verification email sent to your address!');
+    })->middleware(['throttle:3,1'])->name('verification.notice');
+    
+    // Email verification handler
+    Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+        $request->fulfill();
+        return redirect('/dashboard')->with('status', 'Your email has been verified!');
+    })->middleware(['signed'])->name('verification.verify');
+    
+    // Resend verification email
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+        return back()->with('message', 'Verification link sent!');
+    })->middleware(['throttle:6,1'])->name('verification.send');
+});
+
+// Protected routes  
+Route::middleware(['auth', 'verified.email'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');

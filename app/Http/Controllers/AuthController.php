@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -26,7 +27,13 @@ class AuthController extends Controller
 
         if (Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
             $request->session()->regenerate();
-            return redirect()->intended('/dashboard');
+            
+            // Check if email is verified
+            if (Auth::user()->hasVerifiedEmail()) {
+                return redirect()->intended('/dashboard');
+            } else {
+                return redirect()->route('verification.notice');
+            }
         }
 
         return back()->withErrors([
@@ -55,7 +62,10 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/dashboard');
+        // Send email verification notification
+        event(new Registered($user));
+
+        return redirect()->route('verification.notice');
     }
 
     public function showForgotPassword()
