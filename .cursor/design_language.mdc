@@ -1,0 +1,161 @@
+---
+description: Global Design Language for Group Project
+globs: ["**/*.blade.php", "**/*.css", "**/*.scss", "**/*.js", "**/*.vue", "**/*.jsx", "**/*.tsx"]
+alwaysApply: true
+---
+
+# Design Language - Group Project
+
+## Core Principles
+- **Minimalism**: Clean, uncluttered interfaces with plenty of white space
+- **Left Alignment**: All content should be left-aligned for better readability
+- **Consistency**: Uniform spacing, typography, and visual elements across all components
+- **Accessibility**: Ensure all elements are accessible and responsive
+
+## Typography
+- **Primary Font**: System fonts (-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif)
+- **Headings**: Use semibold weight (font-weight: 600) for all headings
+- **Body Text**: Regular weight (font-weight: 400) for body content
+- **Line Height**: 1.6 for body text, 1.2 for headings
+- **Font Sizes**:
+  - H1: 48px (36px on mobile)
+  - H2: 32px (28px on mobile)
+  - H3: 24px (20px on mobile)
+  - Body: 18px (16px on mobile)
+  - Small: 14px
+
+
+
+## Spacing & Layout
+- **Padding Ratios**: Follow the ratio Left:1, Right:1, Top:0.5, Bottom:0.5
+  - Example: If left/right padding is 20px, top/bottom should be 10px
+- **Container**: Max-width 1200px, centered with auto margins
+- **Sections**: 40px vertical padding (80px on desktop for hero sections)
+- **Elements**: 10px base unit for consistent spacing
+
+## Border Radius
+- **Interactive Elements**: 6px border radius for modern, soft appearance
+- **Apply to**: buttons, input fields, and clickable elements
+- **Cards/Containers**: Minimize usage, prefer clean flat design for forms
+
+## Components Standards
+
+### Buttons
+- **Primary Button**: Notion blue (#388fe5) background, white text, hover darker with lift effect
+- **Secondary Button**: Transparent background, Notion blue border and text, hover with subtle background
+- **Hover Effects**: Slight vertical lift (translateY(-1px)) with shadow
+- Padding: 8px 16px (following design ratio)
+- Border radius: 6px for modern rounded appearance
+- Font weight: 500 (medium)
+- Font size: 14px
+- Transition: all 0.2s ease for snappy interactions
+
+### Navigation
+- **Background**: White in light mode (#ffffff), dark in dark mode (#191919)
+- **Logo**: Full "Group Project" text, xl size, semibold weight
+- **Links**: Slate-500 color, hover to primary text color
+- **Theme Toggle**: Circular, filled button matching register button style
+- Padding ratios maintained, smooth transitions
+
+### Cards/Containers
+- **Forms**: No background or borders - clean minimal styling
+- **Other containers**: White background (#ffffff) with slate-200 borders (#e2e8f0) in light mode
+- **Dark Mode**: Dark surface (#2f2f2f) with slate-600 borders (#475569)
+- Border radius: 6px for interactive elements
+- Consistent padding following the ratio system
+- Avoid excessive card styling for forms
+
+### Forms
+- **Layout**: Left-aligned with max-width constraint (max-w-md = 448px)
+- **Input fields**: 6px border radius, 8px padding vertical, 12px horizontal
+- **Buttons**: 8px padding vertical, 16px horizontal with slight hover lift effect
+- **Light**: Border slate-200, focus to primary blue with subtle shadow
+- **Dark**: Border slate-600, focus to primary blue
+- Smooth transitions (0.2s ease)
+- No background cards for form containers
+
+## Responsive Design
+- **Mobile First**: Design for mobile, enhance for desktop
+- **Breakpoints**: 768px for tablet/desktop changes
+- **Navigation**: Stack vertically on mobile with 20px gap
+- **Typography**: Reduce font sizes appropriately on mobile
+- **Spacing**: Reduce padding/margins on smaller screens
+
+## Interactive States
+- **Hover**: Smooth transitions (0.3s ease)
+- **Focus**: Clear visual indicators
+- **Active**: Subtle feedback for user actions
+- **Disabled**: Reduced opacity and no pointer events
+
+## Code Standards
+- Use CSS custom properties for consistent values
+- Follow BEM methodology for class naming when applicable
+- Ensure all interactive elements have proper accessibility attributes
+- Use semantic HTML elements
+- Maintain consistent indentation and formatting
+
+## Color Implementation (Notion Official)
+- **Primary Actions**: Use Notion blue (#0B6E99) for main CTAs, links, and focus states
+- **Backgrounds**: Pure white (#FFFFFF) and Notion dark (#2F3437) for main backgrounds
+- **Surfaces**: Notion blue backgrounds (#DDEBF1 light, #1F343E dark) for cards and containers
+- **Text Hierarchy**: Notion text colors (#37352F light, #D4D4D4 dark) for primary text
+- **Secondary Text**: Notion gray (#9B9A97 light, #979A9B dark) for secondary text
+- **Borders**: Notion gray backgrounds (#EBECED light, #454B4E dark) for subtle divisions
+
+## CSS Variables (Notion Official - Correct)
+```css
+:root {
+  /* Primary Colors */
+  --notion-primary: #388fe5;
+  --notion-primary-hover: #388fe5;
+  
+  /* Light Mode */
+  --notion-bg-primary: #FFFFFF;
+  --notion-bg-sidebar: #F7F6F3;
+  --notion-bg-surface: #E7F3F8;
+  --notion-text-primary: #37352F;
+  --notion-text-secondary: #787774;
+  --notion-border: #F1F1EF;
+  
+  /* Dark Mode */
+  --notion-bg-primary-dark: #191919;
+  --notion-bg-sidebar-dark: #373C3F;
+  --notion-bg-surface-dark: #364954;
+  --notion-text-primary-dark: #FFFFFF;
+  --notion-text-secondary-dark: #979A9B;
+  --notion-border-dark: #454B4E;
+}
+```
+
+## Tailwind CSS Classes
+- **Primary**: `bg-blue-600 hover:bg-blue-700 text-white`
+- **Secondary**: `border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white`
+- **Light Background**: `bg-white dark:bg-gray-900`
+- **Dark Background**: `bg-slate-50 dark:bg-gray-800`
+- **Text**: `text-slate-900 dark:text-slate-50`
+- **Secondary Text**: `text-slate-500 dark:text-slate-400`
+- **Borders**: `border-slate-200 dark:border-slate-600`
+
+## Implementation Notes
+- All measurements should follow the padding ratio system
+- Border radius of 5px should be applied to all visual elements
+- Headings must use semibold (600) font weight
+- Left-align all content unless specifically required otherwise
+- Maintain minimalist aesthetic with generous white space
+- Use Notion's color palette for consistency and professional appearance
+- Ensure proper contrast ratios in both light and dark modes
+## Colors (Notion Official - Correct)
+- **Primary Blue Text**: #388fe5 (Notion's blue text light mode)
+- **Primary Blue Text Dark**: #388fe5 (Notion's blue text dark mode)
+- **Primary Blue Background Light**: #E7F3F8 (Notion's blue background light)
+- **Primary Blue Background Dark**: #191919 (Notion's blue background dark)
+- **Main Background Light**: #FFFFFF (Notion's main window)
+- **Main Background Dark**: #2F3438 (Notion's main window dark)
+- **Sidebar Light**: #F7F6F3 (Notion's sidebar light)
+- **Sidebar Dark**: #373C3F (Notion's sidebar dark)
+- **Text Primary Light**: #37352F (Notion's default text)
+- **Text Primary Dark**: #FFFFFF (Notion's default text dark)
+- **Text Secondary Light**: #787774 (Notion's gray text light)
+- **Text Secondary Dark**: #979A9B (Notion's gray text dark)
+- **Border Light**: #F1F1EF (Notion's gray background light)
+- **Border Dark**: #454B4E (Notion's gray background dark)

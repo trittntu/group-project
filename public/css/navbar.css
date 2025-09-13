@@ -1,0 +1,216 @@
+:root {
+  /* Notion Official Colors - Correct */
+  --notion-primary: #388fe5;
+  --notion-primary-hover: #388fe5;
+  --notion-bg-light: #FFFFFF;
+  --notion-bg-dark: #191919;
+  --notion-surface-light: #E7F3F8;
+  --notion-surface-dark: #364954;
+  --notion-text-light: #37352F;
+  --notion-text-dark: #FFFFFF;
+  --notion-text-secondary-light: #787774;
+  --notion-text-secondary-dark: #979A9B;
+  --notion-border-light: #F1F1EF;
+  --notion-border-dark: #454B4E;
+}
+
+.notion-primary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background-color: var(--notion-primary);
+  color: white;
+  border: 1px solid var(--notion-primary);
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.notion-primary-btn:hover {
+  background-color: rgba(56, 143, 229, 0.9);
+  border-color: rgba(56, 143, 229, 0.9);
+  color: white;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(56, 143, 229, 0.2);
+}
+
+.notion-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  background-color: transparent;
+  color: var(--notion-primary);
+  border: 1px solid var(--notion-primary);
+  border-radius: 6px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.notion-secondary-btn:hover {
+  background-color: rgba(56, 143, 229, 0.05);
+  color: var(--notion-primary);
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(56, 143, 229, 0.1);
+}
+
+.dark .notion-secondary-btn {
+  color: var(--notion-primary);
+  border-color: var(--notion-primary);
+}
+
+.dark .notion-secondary-btn:hover {
+  background-color: rgba(56, 143, 229, 0.2);
+  color: var(--notion-primary);
+  border-color: var(--notion-primary);
+}
+
+.dark .notion-primary-btn {
+  background-color: var(--notion-primary);
+  border-color: var(--notion-primary);
+}
+
+.dark .notion-primary-btn:hover {
+  background-color: rgba(56, 143, 229, 0.8);
+  border-color: rgba(56, 143, 229, 0.8);
+}
+
+.notion-bg {
+  background-color: var(--notion-bg-light);
+}
+
+.dark .notion-bg {
+  background-color: var(--notion-bg-dark);
+}
+
+.notion-text {
+  color: var(--notion-text-light);
+}
+
+.dark .notion-text {
+  color: var(--notion-text-dark);
+}
+
+.notion-text-secondary {
+  color: var(--notion-text-secondary-light);
+}
+
+.dark .notion-text-secondary {
+  color: var(--notion-text-secondary-dark);
+}
+
+.notion-border {
+  border-color: var(--notion-border-light);
+}
+
+.dark .notion-border {
+  border-color: var(--notion-border-dark);
+}
+
+.nav-link:hover {
+  color: var(--notion-text-light) !important;
+}
+
+.dark .nav-link:hover {
+  color: var(--notion-text-dark) !important;
+}
+
+.notion-input {
+  width: 100%;
+  padding: 8px 12px;
+  background-color: var(--notion-bg-light);
+  border: 1px solid var(--notion-border-light);
+  color: var(--notion-text-light);
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.notion-input:focus {
+  outline: none;
+  border-color: var(--notion-primary);
+  box-shadow: 0 0 0 3px rgba(56, 143, 229, 0.1);
+}
+
+.notion-input::placeholder {
+  color: var(--notion-text-secondary-light);
+}
+
+.dark .notion-input {
+  background-color: var(--notion-bg-dark);
+  border-color: var(--notion-border-dark);
+  color: var(--notion-text-dark);
+}
+
+.dark .notion-input:focus {
+  border-color: var(--notion-primary);
+  box-shadow: 0 0 0 3px rgba(56, 143, 229, 0.2);
+}
+
+.dark .notion-input::placeholder {
+  color: var(--notion-text-secondary-dark);
+}
+
+/* Ensure subnav is always clickable when sticky */
+#sub-nav {
+  pointer-events: auto !important;
+  user-select: auto !important;
+}
+
+#sub-nav a {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+/* Subnav modes */
+.subnav-semi .nav-link {
+  padding: 8px 0;
+  font-size: 15px;
+  font-weight: 400;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.subnav-full .nav-link {
+  padding: 8px 0;
+  font-size: 16px;
+  font-weight: 400;
+  position: relative;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+
+/* Active state for subnav items */
+.nav-link.font-bold {
+  font-weight: 700;
+  color: var(--notion-primary);
+  position: relative;
+}
+
+.nav-link.font-bold::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--notion-primary);
+  border-radius: 1px;
+}
+
+/* Ensure user dropdown is always on top */
+#user-menu {
+  z-index: 1000 !important;
+}
